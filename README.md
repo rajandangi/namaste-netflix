@@ -7,6 +7,9 @@
 - Added React Router.
 - Added Header
 - Added Login form
+- Added Signup form
+- Form Validation
+- useRef Hook
 
 ## Features:
 - Login/Signup
