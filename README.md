@@ -4,6 +4,9 @@
 ## Steps Followed:
 - Created React App using vite template.
 - Added Tailwind v4 CSS framework.
+- Added React Router.
+- Added Header
+- Added Login form
 
 ## Features:
 - Login/Signup
@@ -20,3 +23,7 @@
 - Namaste Netflix
     - Search Bar    
     - Movie Suggestions
+
+
+## Resources:
+1. [Formik](https://formik.org/docs/overview) -  Formik is a small library that helps with the getting values in and out of form state, validation and error messages, handling form submission, and handling form submission.
