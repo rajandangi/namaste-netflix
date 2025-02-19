@@ -1,7 +1,5 @@
-export const validateData = (
-  { email, password, fullname },
-  isSignInForm = false
-) => {
+export const validateData = (data, isSignInForm = false) => {
+  const { email, password, fullname } = data;
   const errors = {};
 
   if (!email) {
@@ -16,7 +14,7 @@ export const validateData = (
     errors.password =
       "Password must be at least 8 characters long and contain at least one letter, one number, and one special character";
   }
-  
+
   if (!isSignInForm) {
     if (!fullname) {
       errors.fullname = "Full name is required";
