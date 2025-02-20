@@ -10,7 +10,9 @@
 - Added Signup form
 - Form Validation
 - useRef Hook
-- Firebase Setup
+- Firebase Setup 
+- Deployed on Firebase Hosting
+- Create Sing up user account
 
 ## Features:
 - Login/Signup
