@@ -10,6 +10,7 @@
 - Added Signup form
 - Form Validation
 - useRef Hook
+- Firebase Setup
 
 ## Features:
 - Login/Signup

@@ -17,15 +17,14 @@ const Login = () => {
 
   const handleButtonClick = () => {
     // Validate the from data
-    const errors = validateData(
-      {
-        email: email.current.value,
-        password: password.current.value,
-        fullname: !isSignInForm ? fullname.current.value : null
-      },
-      isSignInForm
-    );
-    setErrorMsg(errors);
+    const formData = {
+      email: email.current.value,
+      password: password.current.value,
+      fullname: !isSignInForm ? fullname.current.value : null
+    };
+
+    const validatonErrors = validateData(formData, isSignInForm);
+    setErrorMsg(validatonErrors);
   }
 
   return (
