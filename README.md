@@ -12,7 +12,11 @@
 - useRef Hook
 - Firebase Setup 
 - Deployed on Firebase Hosting
-- Create Sing up user account
+- Created Sing up user account
+- Created Sign in user account
+- Create sign out user account
+- Implemented Redux state management
+
 
 ## Features:
 - Login/Signup
