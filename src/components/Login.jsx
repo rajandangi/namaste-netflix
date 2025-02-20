@@ -1,32 +1,95 @@
-import Header from "./Header"
-import bgImage from "../assets/large-bg-image.jpg"
-import { useRef, useState } from "react"
+// import Logo from "@/components/UI/Logo";
+import LoginInput from "@/components/UI/LoginInput";
+import bgImage from "@/assets/large-bg-image.jpg";
+import { useRef, useState } from "react";
 import { validateData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "@/redux/slices/userSlice";
+import Header from "@/components/Header";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
   const fullname = useRef(null);
 
   const toggleSignInForm = () => {
-    setIsSignInForm(!isSignInForm)
-  }
+    setIsSignInForm(!isSignInForm);
+    setErrorMsg({});
+  };
 
   const handleButtonClick = () => {
     // Validate the from data
-    const errors = validateData(
-      {
-        email: email.current.value,
-        password: password.current.value,
-        fullname: !isSignInForm ? fullname.current.value : null
-      },
-      isSignInForm
-    );
-    setErrorMsg(errors);
-  }
+    const formData = {
+      email: email.current.value,
+      password: password.current.value,
+      fullname: !isSignInForm ? fullname.current.value : null,
+    };
+
+    const validatonErrors = validateData(formData, isSignInForm);
+    setErrorMsg(validatonErrors);
+
+    // If errors exist, return early
+    if (Object.keys(validatonErrors).length > 0) return;
+
+    // If no errors, Proceed with the Login or Signup
+    if (isSignInForm) {
+      // proceed with login
+      signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password,
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          setErrorMsg({ firebaseError: errorMessage });
+        });
+    } else {
+      // proceed with signup
+      createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+
+          // Set the display name
+          updateProfile(user, {
+            displayName: fullname.current.value,
+          })
+            .then(() => {
+              console.log("Profile updated successfully");
+              dispatch(addUser({ uid: user.uid, email: user.email, displayName: fullname.current.value }));
+              navigate("/browse");
+            }).catch((error) => {
+              setErrorMsg({ firebaseError: error.message });
+            })
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          setErrorMsg({ firebaseError: errorMessage });
+        });
+    }
+  };
 
   return (
     <div
@@ -35,51 +98,42 @@ const Login = () => {
     >
       <Header />
       <div className="grid place-items-center h-full">
-        <div className="grid gap-8 bg-black px-12 pt-24 pb-36 rounded opacity-80 lg:w-1/4 mx-auto w-full">
+        <div className="grid gap-8 bg-black px-12 pt-24 pb-36 rounded opacity-80 lg:w-1/4 mx-auto w-3/4">
           <header>
-            <h1 className="text-3xl text-white font-bold">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
+            <h1 className="text-3xl text-white font-bold">
+              {isSignInForm ? "Sign In" : "Sign Up"}
+            </h1>
           </header>
           <form onSubmit={(e) => e.preventDefault()} className="grid space-y-8">
-            <div className="grid gap-1">
-              <input
-                ref={email}
-                type="text"
-                name="email" id="email"
-                placeholder="Email Address"
-                className="p-3 rounded  border border-solid border-gray-300 focus:outline-none focus:border-white focus:border-2 text-white" />
-              {errorMsg.email && <span className="text-red-500">{errorMsg.email}</span>}
-            </div>
+            <LoginInput type="email" placeholder="Email Address" reference={email} error={errorMsg.email} />
 
             {!isSignInForm && (
-              <div className="grid gap-1">
-                <input
-                  ref={fullname}
-                  type="text"
-                  name="fullname"
-                  id="fullname"
-                  placeholder="Full Name"
-                  className="p-3 rounded border border-solid border-gray-300 focus:outline-none focus:border-white focus:border-2 text-white" />
-                {errorMsg.fullname && <span className="text-red-500">{errorMsg.fullname}</span>}
-              </div>
+              <LoginInput type="text" placeholder="Full Name" reference={fullname} error={errorMsg.fullname} />
             )}
 
+            <LoginInput type="password" placeholder="Password" reference={password} error={errorMsg.password} />
+
             <div className="grid gap-1">
-              <input
-                ref={password}
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="p-3 rounded border border-solid border-gray-300 focus:outline-none focus:border-white focus:border-2 text-white" />
-              {errorMsg.password && <span className="text-red-500">{errorMsg.password}</span>}
+              <button
+                className="px-4 py-2 bg-red-500 opacity-100 rounded cursor-pointer"
+                onClick={handleButtonClick}
+              >
+                Sign In
+              </button>
+
+              {errorMsg.firebaseError && (
+                <span className="text-red-500">{errorMsg.firebaseError}</span>
+              )}
             </div>
 
-            <button className="px-4 py-2 bg-red-500 opacity-100 rounded cursor-pointer" onClick={handleButtonClick}>Sign In</button>
           </form>
           <footer>
             <p className="text-gray-300">
               {isSignInForm ? "New to Netflix?" : "Already have an account?"}
-              <span className="text-white cursor-pointer" onClick={toggleSignInForm}>
+              <span
+                className="text-white cursor-pointer"
+                onClick={toggleSignInForm}
+              >
                 {isSignInForm ? " Sign Up now." : " Sign In now."}
               </span>
             </p>
@@ -87,7 +141,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

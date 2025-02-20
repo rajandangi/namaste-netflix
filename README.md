@@ -10,6 +10,13 @@
 - Added Signup form
 - Form Validation
 - useRef Hook
+- Firebase Setup 
+- Deployed on Firebase Hosting
+- Created Sing up user account
+- Created Sign in user account
+- Create sign out user account
+- Implemented Redux state management
+
 
 ## Features:
 - Login/Signup

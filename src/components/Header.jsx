@@ -1,11 +1,16 @@
-import netflixLogo from '../assets/Netflix_Logo_CMYK.png'
+import Logo from "@/components/UI/Logo"
+import ProfileIcon from "@/components/UI/ProfileIcon"
+import { useSelector } from "react-redux"
 
 const Header = () => {
-  return (
-    <div className='absolute  px-8 py-2 bg-gradient-to-b from-black'>
-      <img className="w-44" src={netflixLogo} alt="Netflix Logo" />
-    </div>
-  )
+    const firebaseUid = useSelector((store) => store.user.uid);
+
+    return (
+        <div className="absolute top-0 flex justify-between items-center p-4 mb-4 z-10 w-full bg-gradient-to-b from-black">
+            <Logo />
+            {firebaseUid && <ProfileIcon />}
+        </div>
+    )
 }
 
-export default Header
+export default Header;
