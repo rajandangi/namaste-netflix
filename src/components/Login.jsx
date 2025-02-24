@@ -9,7 +9,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/redux/slices/userSlice";
 import Header from "@/components/Header";
@@ -17,7 +16,6 @@ import Header from "@/components/Header";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState({});
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -55,7 +53,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -79,7 +76,6 @@ const Login = () => {
             .then(() => {
               console.log("Profile updated successfully");
               dispatch(addUser({ uid: user.uid, email: user.email, displayName: fullname.current.value }));
-              navigate("/browse");
             }).catch((error) => {
               setErrorMsg({ firebaseError: error.message });
             })

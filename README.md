@@ -16,6 +16,9 @@
 - Created Sign in user account
 - Create sign out user account
 - Implemented Redux state management
+- Bug Fix: Sign up user display name and profile picture
+- Bug Fix: Sign in user display name and profile picture
+- Bug Fix: If user is not authenticated, redirect to login page
 
 
 ## Features:

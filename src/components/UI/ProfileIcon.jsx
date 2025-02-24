@@ -3,12 +3,10 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { auth } from "@/utils/firebase"
 import { signOut } from "firebase/auth"
-import { useNavigate } from "react-router"
 
 const ProfileIcon = () => {
     const [showTooltip, setShowTooltip] = useState(false)
     const displayName = useSelector((store) => store.user.displayName);
-    const navigate = useNavigate();
 
     const handleProfileClick = () => {
         setShowTooltip(prev => !prev)
@@ -17,7 +15,6 @@ const ProfileIcon = () => {
     const handleSignOut = async () => {
         try {
             await signOut(auth);
-            navigate("/");
             console.log("Sign-out successful.");
         } catch (error) {
             console.log("An error happened.", error);

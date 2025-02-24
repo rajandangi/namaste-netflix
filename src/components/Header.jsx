@@ -1,8 +1,10 @@
 import Logo from "@/components/UI/Logo"
 import ProfileIcon from "@/components/UI/ProfileIcon"
 import { useSelector } from "react-redux"
+import useAuth from "@/hooks/useAuth"
 
 const Header = () => {
+    useAuth(); // Custom hook to check if user is logged in
     const firebaseUid = useSelector((store) => store.user.uid);
 
     return (
