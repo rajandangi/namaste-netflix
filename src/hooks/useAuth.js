@@ -26,7 +26,7 @@ const useAuth = () => {
 
     // Cleanup subscription on unmount
     return () => unSubscribe();
-  }, []);
+  }, [dispatch, navigate]);
 };
 
 
