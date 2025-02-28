@@ -19,7 +19,19 @@
 - Bug Fix: Sign up user display name and profile picture
 - Bug Fix: Sign in user display name and profile picture
 - Bug Fix: If user is not authenticated, redirect to login page
-
+- Register TMDB API & create an app & get acess token
+- Get Data from TMDB now playingmovies list API
+- Custom hook for now playing movies
+- Create Movie Slice
+- Update Store with movie data
+- Fetch Data for Tailor Video 
+- Update Store with  Tailor Video
+- Embed Tailor video and make it autoplay and mute
+- Added Top Rated
+- Added Popular movies
+- Added Now Playing movies
+- Create Movie List
+- Create Movie Card
 
 ## Features:
 - Login/Signup
