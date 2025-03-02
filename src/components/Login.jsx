@@ -1,6 +1,5 @@
-// import Logo from "@/components/UI/Logo";
 import LoginInput from "@/components/UI/LoginInput";
-import bgImage from "@/assets/large-bg-image.jpg";
+import { IMAGES } from "@/utils/constants";
 import { useRef, useState } from "react";
 import { validateData } from "../utils/validate";
 import {
@@ -90,7 +89,7 @@ const Login = () => {
   return (
     <div
       className="bg-center bg-cover h-screen"
-      style={{ backgroundImage: `url(${bgImage})` }}
+      style={{ backgroundImage: `url(${IMAGES.BACKGROUND})` }}
     >
       <Header />
       <div className="grid place-items-center h-full">
