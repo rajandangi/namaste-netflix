@@ -1,9 +1,9 @@
-import netflixLogo from "@/assets/Netflix_Logo_CMYK.png";
+import { IMAGES } from "@/utils/constants";
 
 const Logo = () => {
   return (
     <div className="flex items-center">
-      <img className="w-34" src={netflixLogo} alt="Netflix Logo" />
+      <img className="w-34" src={IMAGES.LOGO} alt="Netflix Logo" />
     </div>
   );
 };
