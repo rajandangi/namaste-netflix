@@ -1,3 +1,14 @@
+// import images
+import bgImage from "@/assets/large-bg-image.jpg";
+import netflixLogo from "@/assets/Netflix_Logo_CMYK.png";
+import profileImage from "@/assets/netflix-profile-pictures.jpg";
+
+export const IMAGES = {
+  BACKGROUND: bgImage,
+  LOGO: netflixLogo,
+  PROFILE: profileImage,
+};
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
@@ -9,3 +20,4 @@ export const API_OPTIONS = {
 
 
 export const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
+
