@@ -26,10 +26,10 @@ const MovieList = ({ title, movies }) => {
     }
 
     return (!movies || movies.length === 0) ? <Loading /> : (
-        <div className="pl-10">
+        <div className="pl-5 lg:pl-10 overflow-hidden">
             <div className="space-y-4 group">
-                <h1 className="text-2xl font-medium">{title}</h1>
-                <div className="relative">
+                <h1 className="text-xl lg:text-2xl font-medium">{title}</h1>
+                <div className="relative overflow-hidden">
                     <div
                         ref={scrollContainerRef}
                         className="flex gap-4 overflow-x-scroll pr-15 scrollbar-hide relative"

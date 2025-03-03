@@ -21,3 +21,5 @@ export const API_OPTIONS = {
 
 export const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
 
+// DeepSeek API base URL
+export const DEEPSEEK_BASE_URL = "https://api.deepseek.com";

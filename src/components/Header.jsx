@@ -1,5 +1,5 @@
 import Logo from "@/components/UI/Logo"
-import ProfileIcon from "@/components/UI/ProfileIcon"
+import Menu from "@/components/UI/Menu"
 import { useSelector } from "react-redux"
 import useAuth from "@/hooks/useAuth"
 
@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <div className="absolute top-0 flex justify-between items-center p-4 mb-4 z-10 w-full bg-gradient-to-b from-black h-20">
             <Logo />
-            {firebaseUid && <ProfileIcon />}
+            {firebaseUid && <Menu />}
         </div>
     )
 }

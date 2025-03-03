@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 const VideoBackground = (movie_id) => {
     useMovieTrailor(movie_id);
     const trailorKey = useSelector((store) => store.movies.trailorKey);
-    console.log(trailorKey);
     if (!trailorKey) return;
 
     return (

@@ -14,13 +14,12 @@ const LanguageDropdown = () => {
                 name="lang-dropdown"
                 id="i18n"
                 aria-label="Language"
+                defaultValue={selectedLang}
                 className="appearance-none bg-transparent focus:ring-0 focus:outline-none font-medium"
                 onChange={(e) => dispatch(changeLanguage(e.target.value))}
             >
                 {SUPPORTED_LANGUAGES.map((lang) => (
-                    <option key={lang.identifier} value={lang.identifier}
-                        selected={lang.identifier === selectedLang}
-                    >
+                    <option key={lang.identifier} value={lang.identifier}>
                         {lang.name}
                     </option>
                 ))}
