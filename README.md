@@ -32,6 +32,10 @@
 - Added Now Playing movies
 - Create Movie List
 - Create Movie Card
+- Added ChatGPT Search Bar
+- Added ChatGPT Movie Suggestions
+- Added Multi-language support
+- Integrate ChatGPT API (DeekSeek API)
 
 ## Features:
 - Login/Signup
