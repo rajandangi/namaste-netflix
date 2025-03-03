@@ -1,9 +1,12 @@
-import netflixLogo from "@/assets/Netflix_Logo_CMYK.png";
+import { IMAGES } from "@/utils/constants";
+import { Link } from "react-router";
 
 const Logo = () => {
   return (
     <div className="flex items-center">
-      <img className="w-34" src={netflixLogo} alt="Netflix Logo" />
+      <Link to="/" className="flex items-center">
+        <img className="w-24 mg:w-34" src={IMAGES.LOGO} alt="Netflix Logo" />
+      </Link>
     </div>
   );
 };
